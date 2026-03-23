@@ -1,7 +1,13 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Lightbulb, Target, Megaphone, MessageCircle } from "lucide-react";
+import aboutTeam from "@/assets/about-team.png";
 
-const badges = ["Branding", "Estratégia", "SEO", "Performance", "Social Media", "Filmmaker"];
+const badges = [
+  { icon: Lightbulb, label: "Branding que fortalece sua marca" },
+  { icon: Target, label: "Estratégia com foco em resultados" },
+  { icon: Megaphone, label: "SEO, Conteúdo e Mídia Paga" },
+];
 
 const AboutSection = () => {
   const ref = useRef(null);
@@ -10,16 +16,43 @@ const AboutSection = () => {
   return (
     <section id="sobre" className="py-24 md:py-32 relative" ref={ref}>
       <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <p className="section-subtitle mb-3">SOBRE</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-8">
+            Conheça a <span className="text-gold">UP</span> Comunicação
+          </h2>
+
+          {/* Tags like reference image */}
+          <div className="flex flex-wrap justify-center gap-3 mb-16">
+            {badges.map((badge, i) => {
+              const Icon = badge.icon;
+              return (
+                <motion.div
+                  key={badge.label}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+                  className="inline-flex items-center gap-2.5 px-5 py-3 rounded-full glass-card border border-[rgba(255,255,255,0.1)] hover:border-gold/30 transition-all duration-300 group cursor-default"
+                >
+                  <Icon className="w-4 h-4 text-gold group-hover:scale-110 transition-transform" />
+                  <span className="text-sm font-body text-foreground">{badge.label}</span>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <p className="section-subtitle mb-3">SOBRE</p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-6">
-              Conheça a <span className="text-gold">UP</span> Comunicação
-            </h2>
             <p className="text-muted-foreground font-body text-base leading-relaxed mb-6">
               Somos uma agência de comunicação digital completa, sediada em Palmas, TO, com atuação nacional.
               Combinamos criatividade, dados e tecnologia para construir marcas que se destacam e geram resultados reais.
@@ -29,35 +62,31 @@ const AboutSection = () => {
               performance avançadas, sempre com foco em entregar valor mensurável.
             </p>
 
-            <div className="flex flex-wrap gap-3">
-              {badges.map((badge, i) => (
-                <motion.span
-                  key={badge}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
-                  className="px-4 py-2 rounded-full border border-[rgba(255,255,255,0.15)] text-sm font-body text-muted-foreground hover:border-gold/40 hover:text-foreground hover-scale cursor-default transition-colors duration-300"
-                >
-                  {badge}
-                </motion.span>
-              ))}
-            </div>
+            <motion.a
+              href="#orcamento"
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.6 }}
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gold text-primary-foreground font-display font-bold text-base rounded-xl hover:shadow-[0_0_40px_rgba(255,215,0,0.4)] transition-all duration-300 group"
+            >
+              <MessageCircle className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+              Solicitar Orçamento
+            </motion.a>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
             className="relative"
           >
-            <div className="glass-card rounded-3xl aspect-[4/3] overflow-hidden relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-gold/5" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <span className="text-8xl font-display font-extrabold text-gold/15">UP</span>
-                  <p className="text-sm text-muted-foreground mt-2">Equipe UP Comunicação</p>
-                </div>
-              </div>
+            <div className="glass-card rounded-3xl overflow-hidden relative group">
+              <img
+                src={aboutTeam}
+                alt="Equipe UP Comunicação analisando resultados"
+                className="w-full h-auto object-cover rounded-3xl group-hover:scale-[1.02] transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/40 via-transparent to-transparent rounded-3xl" />
             </div>
             <div className="absolute -z-10 -inset-4 bg-gradient-to-r from-gold/5 to-transparent rounded-3xl blur-2xl" />
           </motion.div>

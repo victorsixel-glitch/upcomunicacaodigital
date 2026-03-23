@@ -69,9 +69,21 @@ const HeroSection = () => {
             <motion.a
               ref={btnRef}
               href="#orcamento"
-              animate={{ x: btnOffset.x, y: btnOffset.y }}
-              transition={{ type: "spring", stiffness: 200, damping: 15, mass: 0.5 }}
-              className="inline-flex items-center px-8 py-4 bg-gold text-primary-foreground font-display font-bold text-base rounded-xl hover:shadow-[0_0_40px_rgba(255,215,0,0.4)] transition-shadow duration-300"
+              animate={{
+                x: btnOffset.x,
+                y: btnOffset.y,
+                boxShadow: [
+                  "0 0 20px rgba(255,215,0,0.3), 0 0 40px rgba(255,215,0,0.15)",
+                  "0 0 30px rgba(255,215,0,0.5), 0 0 60px rgba(255,215,0,0.25)",
+                  "0 0 20px rgba(255,215,0,0.3), 0 0 40px rgba(255,215,0,0.15)",
+                ],
+              }}
+              transition={{
+                x: { type: "spring", stiffness: 200, damping: 15, mass: 0.5 },
+                y: { type: "spring", stiffness: 200, damping: 15, mass: 0.5 },
+                boxShadow: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+              }}
+              className="inline-flex items-center px-8 py-4 bg-gold text-primary-foreground font-display font-bold text-base rounded-xl"
             >
               Solicitar Orçamento
             </motion.a>
@@ -101,8 +113,8 @@ const HeroSection = () => {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 z-10">
-                <p className="text-xs text-muted-foreground font-body">Palmas, Tocantins</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-4 z-10">
+                <p className="text-sm font-display font-bold text-gold">Palmas, Tocantins</p>
               </div>
             </motion.div>
             <motion.div
@@ -115,8 +127,8 @@ const HeroSection = () => {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-tl from-gold/10 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 z-10">
-                <p className="text-xs text-muted-foreground font-body">Filmmaker & Estúdio</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-4 z-10">
+                <p className="text-sm font-display font-bold text-gold">Estratégia de Marketing & Branding</p>
               </div>
             </motion.div>
           </div>
