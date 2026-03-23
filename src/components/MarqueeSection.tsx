@@ -28,35 +28,35 @@ const MarqueeSection = () => {
   const inView = useInView(ref, { once: true });
 
   return (
-    <section className="py-14 relative overflow-hidden" ref={ref}>
-      <div className="container mx-auto px-6 mb-10">
+    <section className="py-20 relative overflow-hidden" ref={ref}>
+      <div className="container mx-auto px-6 mb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <p className="section-subtitle mb-3">NOSSOS CLIENTES</p>
-          <h2 className="text-2xl sm:text-3xl font-display font-bold">
+          <p className="section-subtitle mb-4 text-base">NOSSOS CLIENTES</p>
+          <h2 className="text-3xl sm:text-4xl font-display font-bold">
             Marcas que confiam no nosso <span className="text-gold">UP</span>
           </h2>
         </motion.div>
       </div>
 
       <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-dark to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-dark to-transparent z-10" />
+        <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-dark to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-dark to-transparent z-10" />
 
         <div className="flex animate-marquee">
           {[...clientLogos, ...clientLogos].map((logo, i) => (
             <div
               key={i}
-              className="flex-shrink-0 mx-10 flex items-center justify-center h-20 px-6 opacity-40 hover:opacity-100 hover:drop-shadow-[0_0_12px_rgba(255,215,0,0.4)] transition-all duration-500 cursor-pointer"
+              className="flex-shrink-0 mx-12 flex items-center justify-center h-24 px-8 opacity-40 hover:opacity-100 hover:drop-shadow-[0_0_16px_rgba(255,215,0,0.4)] transition-all duration-500 cursor-pointer"
             >
               <img
                 src={logo.src}
                 alt={logo.alt}
-                className="h-12 w-auto object-contain brightness-0 invert"
+                className="h-16 w-auto object-contain brightness-0 invert"
               />
             </div>
           ))}

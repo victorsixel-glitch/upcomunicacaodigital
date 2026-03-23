@@ -15,39 +15,39 @@ const SolutionsSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="solucoes" className="py-16 md:py-24 relative" ref={ref}>
+    <section id="solucoes" className="py-24 md:py-32 relative" ref={ref}>
       <div className="absolute inset-0 bg-dark-card/50" />
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <p className="section-subtitle mb-3">O QUE FAZEMOS</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold">
+          <p className="section-subtitle mb-4 text-base">O QUE FAZEMOS</p>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold">
             Soluções para sua marca
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {services.map((service, i) => (
             <motion.div
               key={service.number}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="group"
             >
-              <div className="glass-card p-8 rounded-2xl border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,215,0,0.2)] hover:shadow-[0_0_25px_rgba(255,215,0,0.06)] transition-all duration-500 h-full relative overflow-hidden">
-                <span className="outline-number top-2 right-4 text-[6rem]">{service.number}</span>
+              <div className="glass-card p-10 rounded-2xl border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,215,0,0.2)] hover:shadow-[0_0_30px_rgba(255,215,0,0.06)] transition-all duration-500 h-full relative overflow-hidden">
+                <span className="outline-number top-2 right-4 text-[7rem]">{service.number}</span>
                 <div className="relative z-10">
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-[rgba(255,255,255,0.15)] text-foreground font-display font-bold text-sm mb-6">
+                  <span className="inline-flex items-center justify-center w-12 h-12 rounded-xl border border-[rgba(255,255,255,0.15)] text-foreground font-display font-bold text-base mb-6">
                     {service.number}
                   </span>
-                  <h3 className="text-lg font-display font-bold mb-2">{service.title}</h3>
+                  <h3 className="text-xl font-display font-bold mb-3">{service.title}</h3>
                   <p className="text-gold font-body text-sm italic mb-4">{service.category}</p>
-                  <p className="text-muted-foreground font-body text-sm leading-relaxed">{service.desc}</p>
+                  <p className="text-muted-foreground font-body text-base leading-relaxed">{service.desc}</p>
                 </div>
               </div>
             </motion.div>
