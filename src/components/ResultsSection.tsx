@@ -66,13 +66,14 @@ const ResultsSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-24 md:py-32 relative" ref={ref}>
-      <div className="container mx-auto px-6">
+    <section className="py-16 md:py-24 relative" ref={ref}>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,215,0,0.03)_0%,transparent_70%)]" />
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <p className="section-subtitle mb-3">RESULTADOS QUE FALAM</p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold">
@@ -89,7 +90,7 @@ const ResultsSection = () => {
               transition={{ duration: 0.6, delay: i * 0.15 }}
             >
               <TiltCard>
-                <div className="glass-card p-8 sm:p-10 text-center rounded-2xl border border-[rgba(255,215,0,0.1)] hover:border-[rgba(255,215,0,0.3)] transition-colors duration-500">
+                <div className="glass-card p-8 sm:p-10 text-center rounded-2xl border border-[rgba(255,215,0,0.08)] hover:border-[rgba(255,215,0,0.3)] hover:shadow-[0_0_30px_rgba(255,215,0,0.08)] transition-all duration-500">
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                   <p className="mt-3 text-muted-foreground font-body text-base">{stat.label}</p>
                 </div>

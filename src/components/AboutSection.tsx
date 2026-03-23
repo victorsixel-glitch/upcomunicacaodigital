@@ -14,21 +14,20 @@ const AboutSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="sobre" className="py-24 md:py-32 relative" ref={ref}>
+    <section id="sobre" className="py-16 md:py-24 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
           <p className="section-subtitle mb-3">SOBRE</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-6">
             Conheça a <span className="text-gold">UP</span> Comunicação
           </h2>
 
-          {/* Tags like reference image */}
-          <div className="flex flex-wrap justify-center gap-3 mb-16">
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
             {badges.map((badge, i) => {
               const Icon = badge.icon;
               return (
@@ -37,7 +36,7 @@ const AboutSection = () => {
                   initial={{ opacity: 0, y: 15 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                  className="inline-flex items-center gap-2.5 px-5 py-3 rounded-full glass-card border border-[rgba(255,255,255,0.1)] hover:border-gold/30 transition-all duration-300 group cursor-default"
+                  className="inline-flex items-center gap-2.5 px-5 py-3 rounded-full glass-card border border-[rgba(255,255,255,0.1)] hover:border-gold/30 hover:scale-105 transition-all duration-300 group cursor-default"
                 >
                   <Icon className="w-4 h-4 text-gold group-hover:scale-110 transition-transform" />
                   <span className="text-sm font-body text-foreground">{badge.label}</span>
@@ -47,7 +46,7 @@ const AboutSection = () => {
           </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -80,15 +79,17 @@ const AboutSection = () => {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="relative"
           >
-            <div className="glass-card rounded-3xl overflow-hidden relative group">
-              <img
-                src={aboutTeam}
-                alt="Equipe UP Comunicação analisando resultados"
-                className="w-full h-auto object-cover rounded-3xl group-hover:scale-[1.02] transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark/40 via-transparent to-transparent rounded-3xl" />
+            <div className="glass-card rounded-2xl overflow-hidden relative group">
+              <div className="h-[320px] md:h-[380px] overflow-hidden">
+                <img
+                  src={aboutTeam}
+                  alt="Equipe UP Comunicação analisando resultados"
+                  className="w-full h-[140%] object-cover object-center -mt-[15%] group-hover:scale-[1.03] transition-transform duration-700"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-dark/20 rounded-2xl" />
             </div>
-            <div className="absolute -z-10 -inset-4 bg-gradient-to-r from-gold/5 to-transparent rounded-3xl blur-2xl" />
+            <div className="absolute -z-10 -inset-3 bg-gradient-to-r from-gold/5 to-transparent rounded-2xl blur-2xl" />
           </motion.div>
         </div>
       </div>
