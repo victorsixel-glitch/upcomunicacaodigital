@@ -15,21 +15,21 @@ const DifferentialsSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-16 md:py-24 relative" ref={ref}>
+    <section className="py-24 md:py-32 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <p className="section-subtitle mb-3">POR QUE A UP</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold">
+          <p className="section-subtitle mb-4 text-base">POR QUE A UP</p>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold">
             O que nos torna diferentes
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid sm:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {items.map((item, i) => {
             const Icon = item.icon;
             return (
@@ -40,12 +40,12 @@ const DifferentialsSection = () => {
                 transition={{ duration: 0.5, delay: i * 0.12 }}
               >
                 <TiltCard>
-                  <div className="glass-card p-8 rounded-2xl border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,215,0,0.2)] hover:shadow-[0_0_25px_rgba(255,215,0,0.06)] transition-all duration-500 h-full">
-                    <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-5">
-                      <Icon className="w-6 h-6 text-gold" />
+                  <div className="glass-card p-10 rounded-2xl border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,215,0,0.2)] hover:shadow-[0_0_30px_rgba(255,215,0,0.06)] transition-all duration-500 h-full">
+                    <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-6">
+                      <Icon className="w-7 h-7 text-gold" />
                     </div>
-                    <h3 className="text-lg font-display font-bold mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground font-body text-sm leading-relaxed">{item.desc}</p>
+                    <h3 className="text-xl font-display font-bold mb-3">{item.title}</h3>
+                    <p className="text-muted-foreground font-body text-base leading-relaxed">{item.desc}</p>
                   </div>
                 </TiltCard>
               </motion.div>

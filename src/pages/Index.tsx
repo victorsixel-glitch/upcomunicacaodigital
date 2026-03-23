@@ -11,19 +11,33 @@ import CasesSection from "@/components/CasesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FooterSection from "@/components/FooterSection";
 
+const SectionDivider = () => (
+  <div className="relative h-px max-w-5xl mx-auto">
+    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(255,215,0,0.15)] to-transparent" />
+  </div>
+);
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-dark">
       <Header />
       <HeroSection />
+      <SectionDivider />
       <ResultsSection />
+      <SectionDivider />
       <MethodologySection />
+      <SectionDivider />
       <MarqueeSection />
+      <SectionDivider />
       <AboutSection />
       <MissionSection />
+      <SectionDivider />
       <DifferentialsSection />
+      <SectionDivider />
       <SolutionsSection />
+      <SectionDivider />
       <CasesSection />
+      <SectionDivider />
       <TestimonialsSection />
       <FooterSection />
     </div>

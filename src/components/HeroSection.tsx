@@ -31,10 +31,10 @@ const HeroSection = () => {
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,215,0,0.05)_0%,transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(255,215,0,0.03)_0%,transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,215,0,0.06)_0%,transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(255,215,0,0.04)_0%,transparent_50%)]" />
 
-      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -44,24 +44,24 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="section-subtitle mb-4"
+            className="section-subtitle mb-5 text-base"
           >
             BRANDING · FILMMAKER · PERFORMANCE
           </motion.p>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-extrabold leading-[1.05] tracking-[-0.02em] mb-6">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-extrabold leading-[1.02] tracking-[-0.02em] mb-8">
             Sua agência de alta performance em{" "}
             <span className="text-gold">Palmas</span>, pronta para o{" "}
             <span className="text-gold">Brasil</span>.
           </h1>
 
-          <p className="text-lg text-muted-foreground max-w-lg mb-10 font-body">
+          <p className="text-xl text-muted-foreground max-w-xl mb-12 font-body leading-relaxed">
             Construímos marcas com estratégia, criatividade e dados.
             Da identidade visual à performance digital, elevamos o seu negócio.
           </p>
 
           <div
-            className="flex flex-wrap gap-4"
+            className="flex flex-wrap gap-5"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{ padding: "40px", margin: "-40px" }}
@@ -83,13 +83,13 @@ const HeroSection = () => {
                 y: { type: "spring", stiffness: 200, damping: 15, mass: 0.5 },
                 boxShadow: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
               }}
-              className="inline-flex items-center px-8 py-4 bg-gold text-primary-foreground font-display font-bold text-base rounded-xl"
+              className="inline-flex items-center px-10 py-5 bg-gold text-primary-foreground font-display font-bold text-lg rounded-xl"
             >
               Solicitar Orçamento
             </motion.a>
             <a
               href="#portfolio"
-              className="inline-flex items-center px-8 py-4 border border-[rgba(255,255,255,0.2)] text-foreground font-display font-semibold text-base rounded-xl glass-card hover:border-[rgba(255,255,255,0.4)] transition-all duration-300"
+              className="inline-flex items-center px-10 py-5 border border-[rgba(255,255,255,0.2)] text-foreground font-display font-semibold text-lg rounded-xl glass-card hover:border-[rgba(255,255,255,0.4)] transition-all duration-300"
             >
               Ver Portfólio
             </a>
@@ -102,7 +102,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="relative hidden lg:block"
         >
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-5">
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="glass-card overflow-hidden rounded-2xl aspect-[3/4] relative group"
@@ -113,8 +113,8 @@ const HeroSection = () => {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-4 z-10">
-                <p className="text-sm font-display font-bold text-gold">Palmas, Tocantins</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-5 z-10">
+                <p className="text-base font-display font-bold text-gold">Palmas, Tocantins</p>
               </div>
             </motion.div>
             <motion.div
@@ -127,8 +127,8 @@ const HeroSection = () => {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-tl from-gold/10 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-4 z-10">
-                <p className="text-sm font-display font-bold text-gold">Estratégia de Marketing & Branding</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-5 z-10">
+                <p className="text-base font-display font-bold text-gold">Estratégia de Marketing & Branding</p>
               </div>
             </motion.div>
           </div>
