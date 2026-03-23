@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { MessageCircle, Instagram, Linkedin, Mail, Send } from "lucide-react";
+import logoUp from "@/assets/logo-up.png";
 
 const FooterSection = () => {
   const ref = useRef(null);
@@ -14,7 +15,7 @@ const FooterSection = () => {
   return (
     <footer ref={ref}>
       {/* CTA Band */}
-      <section id="orcamento" className="py-20 md:py-28 bg-gold relative overflow-hidden">
+      <section id="orcamento" className="py-16 md:py-24 bg-gold relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,0,0,0.1)_0%,transparent_60%)]" />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -23,7 +24,6 @@ const FooterSection = () => {
           className="container mx-auto px-6 relative z-10"
         >
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left: CTA text */}
             <div className="text-center lg:text-left">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-primary-foreground mb-6 leading-tight">
                 Pronto para dar o UP que<br />sua marca precisa?
@@ -42,7 +42,6 @@ const FooterSection = () => {
               </a>
             </div>
 
-            {/* Right: Contact form */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -53,36 +52,30 @@ const FooterSection = () => {
                 Receba um orçamento em até 48h
               </h3>
               <div className="space-y-4">
-                <div>
-                  <input
-                    type="text"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder="Seu nome"
-                    className="w-full px-4 py-3 bg-[rgba(0,0,0,0.2)] border border-[rgba(0,0,0,0.15)] rounded-xl text-primary-foreground placeholder:text-primary-foreground/50 font-body text-sm focus:outline-none focus:border-primary-foreground/40 transition-colors"
-                  />
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="seu@email.com"
-                    className="w-full px-4 py-3 bg-[rgba(0,0,0,0.2)] border border-[rgba(0,0,0,0.15)] rounded-xl text-primary-foreground placeholder:text-primary-foreground/50 font-body text-sm focus:outline-none focus:border-primary-foreground/40 transition-colors"
-                  />
-                </div>
-                <div>
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    placeholder="Como podemos ajudar?"
-                    rows={3}
-                    className="w-full px-4 py-3 bg-[rgba(0,0,0,0.2)] border border-[rgba(0,0,0,0.15)] rounded-xl text-primary-foreground placeholder:text-primary-foreground/50 font-body text-sm focus:outline-none focus:border-primary-foreground/40 transition-colors resize-none"
-                  />
-                </div>
+                <input
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  placeholder="Seu nome"
+                  className="w-full px-4 py-3 bg-[rgba(0,0,0,0.2)] border border-[rgba(0,0,0,0.15)] rounded-xl text-primary-foreground placeholder:text-primary-foreground/50 font-body text-sm focus:outline-none focus:border-primary-foreground/40 transition-colors"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="seu@email.com"
+                  className="w-full px-4 py-3 bg-[rgba(0,0,0,0.2)] border border-[rgba(0,0,0,0.15)] rounded-xl text-primary-foreground placeholder:text-primary-foreground/50 font-body text-sm focus:outline-none focus:border-primary-foreground/40 transition-colors"
+                />
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  placeholder="Como podemos ajudar?"
+                  rows={3}
+                  className="w-full px-4 py-3 bg-[rgba(0,0,0,0.2)] border border-[rgba(0,0,0,0.15)] rounded-xl text-primary-foreground placeholder:text-primary-foreground/50 font-body text-sm focus:outline-none focus:border-primary-foreground/40 transition-colors resize-none"
+                />
                 <button className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-dark text-foreground font-display font-bold text-sm rounded-xl hover:bg-dark-card hover:shadow-[0_0_20px_rgba(0,0,0,0.3)] transition-all duration-300 group">
                   <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   Enviar Solicitação
@@ -94,16 +87,15 @@ const FooterSection = () => {
       </section>
 
       {/* Footer */}
-      <div className="bg-dark py-16 border-t border-[rgba(255,255,255,0.05)]">
+      <div className="bg-dark py-12 border-t border-[rgba(255,255,255,0.05)]">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
+          <div className="grid md:grid-cols-3 gap-10 mb-10">
             <div>
-              <span className="text-2xl font-display font-extrabold text-foreground">UP</span>
-              <p className="text-sm text-muted-foreground mt-3 font-body leading-relaxed">
+              <img src={logoUp} alt="UP Comunicação" className="h-10 w-auto mb-3" />
+              <p className="text-sm text-muted-foreground font-body leading-relaxed">
                 Agência de comunicação digital premium.<br />Palmas, TO · Atuação nacional.
               </p>
             </div>
-
             <div>
               <h4 className="text-sm font-display font-semibold mb-4 text-foreground">Links</h4>
               <nav className="flex flex-col gap-2">
@@ -114,7 +106,6 @@ const FooterSection = () => {
                 ))}
               </nav>
             </div>
-
             <div>
               <h4 className="text-sm font-display font-semibold mb-4 text-foreground">Contato</h4>
               <p className="text-sm text-muted-foreground font-body mb-2">contato@upcomunicacao.com.br</p>

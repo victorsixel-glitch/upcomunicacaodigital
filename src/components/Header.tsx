@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import logoUp from "@/assets/logo-up.png";
 
 const navLinks = [
   { label: "Início", href: "#inicio" },
@@ -29,11 +30,9 @@ const Header = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between py-4 px-6">
+      <div className="container mx-auto flex items-center justify-between py-3 px-6">
         <a href="#inicio" className="group flex items-center gap-2">
-          <span className="text-2xl font-display font-extrabold text-foreground transition-all duration-300 group-hover:text-gold">
-            UP
-          </span>
+          <img src={logoUp} alt="UP Comunicação Digital" className="h-10 w-auto object-contain" />
           <span className="text-xs font-body text-muted-foreground hidden sm:block">
             Comunicação Digital
           </span>

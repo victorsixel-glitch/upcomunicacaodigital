@@ -18,13 +18,13 @@ const CasesSection = () => {
   const others = cases.filter((_, i) => i !== featured);
 
   return (
-    <section id="portfolio" className="py-24 md:py-32 relative" ref={ref}>
+    <section id="portfolio" className="py-16 md:py-24 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <p className="section-subtitle mb-3">PORTFÓLIO</p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold">
@@ -41,7 +41,7 @@ const CasesSection = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5 }}
-              className="lg:col-span-2 group relative overflow-hidden rounded-2xl cursor-pointer aspect-[16/10]"
+              className="lg:col-span-2 group relative overflow-hidden rounded-2xl cursor-pointer aspect-[16/10] glass-card"
               onClick={() => setFeatured((featured + 1) % cases.length)}
             >
               <img
@@ -49,8 +49,8 @@ const CasesSection = () => {
                 alt={cases[featured].title}
                 className="absolute inset-0 w-full h-full object-contain bg-dark-card"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                 <p className="text-xs text-gold font-semibold uppercase tracking-wider mb-1">{cases[featured].category}</p>
                 <h3 className="text-2xl font-display font-bold text-foreground">{cases[featured].title}</h3>
               </div>
@@ -68,7 +68,7 @@ const CasesSection = () => {
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5 }}
                   onClick={() => setFeatured(originalIndex)}
-                  className="group relative overflow-hidden rounded-2xl cursor-pointer flex-1 aspect-[16/10] lg:aspect-auto"
+                  className="group relative overflow-hidden rounded-2xl cursor-pointer flex-1 aspect-[16/10] lg:aspect-auto glass-card hover:border-gold/20 transition-all duration-500"
                 >
                   <img
                     src={item.image}
@@ -76,7 +76,7 @@ const CasesSection = () => {
                     className="absolute inset-0 w-full h-full object-contain bg-dark-card group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-dark/40 group-hover:bg-dark/20 transition-colors duration-500" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
                     <p className="text-[10px] text-gold font-semibold uppercase tracking-wider mb-0.5">{item.category}</p>
                     <h4 className="text-sm font-display font-bold text-foreground">{item.title}</h4>
                   </div>
