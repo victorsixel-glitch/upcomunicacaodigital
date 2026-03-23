@@ -1,20 +1,32 @@
 import { motion } from "framer-motion";
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useState } from "react";
+import heroTeam from "@/assets/hero-team.png";
+import heroPalmas from "@/assets/hero-palmas.png";
 
 const HeroSection = () => {
   const btnRef = useRef<HTMLAnchorElement>(null);
+  const [btnOffset, setBtnOffset] = useState({ x: 0, y: 0 });
 
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const btn = btnRef.current;
     if (!btn) return;
     const rect = btn.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const maxDist = 180;
+    if (dist < maxDist) {
+      const strength = 1 - dist / maxDist;
+      setBtnOffset({ x: dx * strength * 0.45, y: dy * strength * 0.45 });
+    } else {
+      setBtnOffset({ x: 0, y: 0 });
+    }
   }, []);
 
   const handleMouseLeave = useCallback(() => {
-    if (btnRef.current) btnRef.current.style.transform = "translate(0, 0)";
+    setBtnOffset({ x: 0, y: 0 });
   }, []);
 
   return (
@@ -48,16 +60,21 @@ const HeroSection = () => {
             Da identidade visual à performance digital, elevamos o seu negócio.
           </p>
 
-          <div className="flex flex-wrap gap-4">
-            <a
+          <div
+            className="flex flex-wrap gap-4"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ padding: "40px", margin: "-40px" }}
+          >
+            <motion.a
               ref={btnRef}
               href="#orcamento"
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              className="inline-flex items-center px-8 py-4 bg-gold text-primary-foreground font-display font-bold text-base rounded-xl btn-magnetic hover:shadow-[0_0_40px_rgba(255,215,0,0.4)] transition-all duration-300"
+              animate={{ x: btnOffset.x, y: btnOffset.y }}
+              transition={{ type: "spring", stiffness: 200, damping: 15, mass: 0.5 }}
+              className="inline-flex items-center px-8 py-4 bg-gold text-primary-foreground font-display font-bold text-base rounded-xl hover:shadow-[0_0_40px_rgba(255,215,0,0.4)] transition-shadow duration-300"
             >
               Solicitar Orçamento
-            </a>
+            </motion.a>
             <a
               href="#portfolio"
               className="inline-flex items-center px-8 py-4 border border-[rgba(255,255,255,0.2)] text-foreground font-display font-semibold text-base rounded-xl glass-card hover:border-[rgba(255,255,255,0.4)] transition-all duration-300"
@@ -78,11 +95,13 @@ const HeroSection = () => {
               whileHover={{ scale: 1.02 }}
               className="glass-card overflow-hidden rounded-2xl aspect-[3/4] relative group"
             >
+              <img
+                src={heroPalmas}
+                alt="Palmas, Tocantins"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-6xl font-display font-extrabold text-gold/20">UP</span>
-              </div>
-              <div className="absolute bottom-4 left-4 right-4">
+              <div className="absolute bottom-4 left-4 right-4 z-10">
                 <p className="text-xs text-muted-foreground font-body">Palmas, Tocantins</p>
               </div>
             </motion.div>
@@ -90,13 +109,13 @@ const HeroSection = () => {
               whileHover={{ scale: 1.02 }}
               className="glass-card overflow-hidden rounded-2xl aspect-[3/4] mt-12 relative group"
             >
+              <img
+                src={heroTeam}
+                alt="Equipe UP Comunicação Digital"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-tl from-gold/10 to-transparent" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full border-2 border-gold/30 flex items-center justify-center">
-                  <div className="w-4 h-4 bg-gold/40 rounded-full" />
-                </div>
-              </div>
-              <div className="absolute bottom-4 left-4 right-4">
+              <div className="absolute bottom-4 left-4 right-4 z-10">
                 <p className="text-xs text-muted-foreground font-body">Filmmaker & Estúdio</p>
               </div>
             </motion.div>
