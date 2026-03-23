@@ -1,14 +1,28 @@
 import { motion } from "framer-motion";
+import { useRef, useCallback } from "react";
 
 const HeroSection = () => {
+  const btnRef = useRef<HTMLAnchorElement>(null);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const btn = btnRef.current;
+    if (!btn) return;
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    if (btnRef.current) btnRef.current.style.transform = "translate(0, 0)";
+  }, []);
+
   return (
     <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Background grain */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,215,0,0.05)_0%,transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(255,215,0,0.03)_0%,transparent_50%)]" />
 
       <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-        {/* Text */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -36,7 +50,10 @@ const HeroSection = () => {
 
           <div className="flex flex-wrap gap-4">
             <a
+              ref={btnRef}
               href="#orcamento"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
               className="inline-flex items-center px-8 py-4 bg-gold text-primary-foreground font-display font-bold text-base rounded-xl btn-magnetic hover:shadow-[0_0_40px_rgba(255,215,0,0.4)] transition-all duration-300"
             >
               Solicitar Orçamento
@@ -50,7 +67,6 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        {/* Visual Grid */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -85,7 +101,6 @@ const HeroSection = () => {
               </div>
             </motion.div>
           </div>
-          {/* Decorative layer */}
           <div className="absolute -z-10 -inset-4 bg-gradient-to-r from-gold/5 to-transparent rounded-3xl blur-xl" />
         </motion.div>
       </div>
