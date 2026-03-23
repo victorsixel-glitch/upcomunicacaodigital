@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const cases = [
@@ -6,6 +6,44 @@ const cases = [
   { title: "Projeto Beta", category: "Performance", span: "md:col-span-1" },
   { title: "Projeto Gamma", category: "Filmmaker", span: "md:col-span-1" },
 ];
+
+const ParallaxCard = ({ item, index, inView }: { item: typeof cases[0]; index: number; inView: boolean }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      key={item.title}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={inView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.15 }}
+      className={`${item.span} group relative overflow-hidden rounded-2xl cursor-pointer`}
+    >
+      <div className="absolute inset-0 glass-card" />
+      <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-gold/5" />
+
+      {/* Parallax inner content */}
+      <motion.div className="absolute inset-0 flex items-center justify-center" style={{ y }}>
+        <span className="text-7xl font-display font-extrabold text-gold/10 group-hover:scale-110 transition-transform duration-700">
+          UP
+        </span>
+      </motion.div>
+
+      {/* Hover overlay */}
+      <div className="absolute inset-0 bg-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+        <div>
+          <p className="text-xs text-gold font-semibold uppercase tracking-wider mb-1">{item.category}</p>
+          <h3 className="text-xl font-display font-bold text-foreground">{item.title}</h3>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 const CasesSection = () => {
   const ref = useRef(null);
@@ -28,31 +66,7 @@ const CasesSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto auto-rows-[200px] md:auto-rows-[220px]">
           {cases.map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              className={`${item.span} group relative overflow-hidden rounded-2xl cursor-pointer`}
-            >
-              <div className="absolute inset-0 glass-card" />
-              <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-gold/5" />
-
-              {/* Parallax placeholder */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-7xl font-display font-extrabold text-gold/10 group-hover:scale-110 transition-transform duration-700">
-                  UP
-                </span>
-              </div>
-
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                <div>
-                  <p className="text-xs text-gold font-semibold uppercase tracking-wider mb-1">{item.category}</p>
-                  <h3 className="text-xl font-display font-bold text-foreground">{item.title}</h3>
-                </div>
-              </div>
-            </motion.div>
+            <ParallaxCard key={item.title} item={item} index={i} inView={inView} />
           ))}
         </div>
       </div>

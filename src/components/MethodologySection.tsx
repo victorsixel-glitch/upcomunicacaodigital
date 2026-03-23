@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Search, Lightbulb, Rocket } from "lucide-react";
 
@@ -11,6 +11,11 @@ const steps = [
 const MethodologySection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const lineHeight = useTransform(scrollYProgress, [0.1, 0.7], ["0%", "100%"]);
 
   return (
     <section className="py-24 md:py-32 relative" ref={ref}>
@@ -27,40 +32,51 @@ const MethodologySection = () => {
           </h2>
         </motion.div>
 
-        <div className="relative max-w-3xl mx-auto">
-          {/* Vertical line */}
-          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-gold/0 via-gold/40 to-gold/0" />
+        <div className="relative max-w-4xl mx-auto">
+          {/* Background line */}
+          <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-px bg-[rgba(255,255,255,0.06)]" />
+          {/* Neon glowing line that fills on scroll */}
+          <motion.div
+            className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 w-px origin-top"
+            style={{
+              height: lineHeight,
+              background: "linear-gradient(to bottom, hsl(51 100% 50%), hsl(51 100% 50% / 0.6))",
+              boxShadow: "0 0 8px hsl(51 100% 50% / 0.6), 0 0 20px hsl(51 100% 50% / 0.3)",
+            }}
+          />
 
-          {steps.map((step, i) => {
-            const Icon = step.icon;
-            return (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 40 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.2 }}
-                className={`relative flex items-start gap-6 md:gap-12 mb-16 last:mb-0 ${
-                  i % 2 === 1 ? "md:flex-row-reverse md:text-right" : ""
-                }`}
-              >
-                {/* Dot */}
-                <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-gold shadow-[0_0_20px_rgba(255,215,0,0.6)] z-10 mt-8" />
+          <div className="space-y-12">
+            {steps.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: i * 0.2 }}
+                  className={`relative flex items-start gap-6 md:gap-12 ${
+                    i % 2 === 1 ? "md:flex-row-reverse md:text-right" : ""
+                  }`}
+                >
+                  {/* Dot */}
+                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-gold shadow-[0_0_20px_rgba(255,215,0,0.6)] z-10 mt-8" />
 
-                <div className={`ml-14 md:ml-0 md:w-1/2 ${i % 2 === 1 ? "md:pr-16" : "md:pl-16 md:ml-auto"}`}>
-                  <div className="glass-card p-8 rounded-2xl relative overflow-hidden border border-[rgba(255,215,0,0.08)] hover:border-[rgba(255,215,0,0.3)] transition-all duration-500 group">
-                    <span className="outline-number top-2 right-4 text-[6rem]">{step.number}</span>
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
-                        <Icon className="w-6 h-6 text-gold" />
+                  <div className={`ml-14 md:ml-0 md:w-1/2 ${i % 2 === 1 ? "md:pr-16" : "md:pl-16 md:ml-auto"}`}>
+                    <div className="glass-card p-8 rounded-2xl relative overflow-hidden border border-[rgba(255,215,0,0.08)] hover:border-[rgba(255,215,0,0.3)] transition-all duration-500 group">
+                      <span className="outline-number top-2 right-4 text-[6rem]">{step.number}</span>
+                      <div className="relative z-10">
+                        <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
+                          <Icon className="w-6 h-6 text-gold" />
+                        </div>
+                        <h3 className="text-xl font-display font-bold mb-2">{step.title}</h3>
+                        <p className="text-muted-foreground font-body text-sm leading-relaxed">{step.desc}</p>
                       </div>
-                      <h3 className="text-xl font-display font-bold mb-2">{step.title}</h3>
-                      <p className="text-muted-foreground font-body text-sm leading-relaxed">{step.desc}</p>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            );
-          })}
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
