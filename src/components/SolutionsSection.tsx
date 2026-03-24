@@ -1,5 +1,5 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ChevronRight, Briefcase, Palette, Camera, ClipboardCheck, Rocket, Globe } from "lucide-react";
 
 const services = [
@@ -10,6 +10,68 @@ const services = [
   { icon: Rocket, title: "Lançamentos de Produtos & Serviços", category: "Marca e Posicionamento", desc: "Lançar é criar movimento. Planejamos e executamos lançamentos que posicionam seus produtos no mercado de forma criativa e estratégica." },
   { icon: Globe, title: "Sites & Manutenção", category: "Digital & Tecnologia", desc: "Um site bem estruturado é a vitrine digital da sua empresa. Criamos sites responsivos, seguros e otimizados para gerar credibilidade e potencializar vendas." },
 ];
+
+const ServiceItem = ({ service, i, isOpen, toggle }: { service: typeof services[0]; i: number; isOpen: boolean; toggle: () => void }) => {
+  const itemRef = useRef(null);
+  const inView = useInView(itemRef, { once: true, margin: "-50px" });
+  const Icon = service.icon;
+
+  // Auto-open on scroll into view
+  useEffect(() => {
+    if (inView && !isOpen) {
+      const timer = setTimeout(() => toggle(), i * 200);
+      return () => clearTimeout(timer);
+    }
+  }, [inView]);
+
+  return (
+    <motion.div
+      ref={itemRef}
+      initial={{ opacity: 0, x: -30 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.5, delay: i * 0.08 }}
+    >
+      <button
+        onClick={toggle}
+        className={`w-full text-left group rounded-2xl border transition-all duration-500 overflow-hidden ${
+          isOpen
+            ? "glass-card border-gold/30 shadow-[0_0_30px_rgba(255,215,0,0.08)]"
+            : "glass-card border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.15)]"
+        }`}
+      >
+        <div className="flex items-center gap-4 sm:gap-6 p-5 sm:p-6 md:p-8">
+          <span className="text-2xl sm:text-3xl font-display font-extrabold text-gold/30 group-hover:text-gold/60 transition-colors min-w-[2.5rem] sm:min-w-[3rem]">
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-colors">
+            <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-gold" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-base sm:text-lg md:text-xl font-display font-bold truncate">{service.title}</h3>
+            <p className="text-gold/70 font-body text-xs sm:text-sm">{service.category}</p>
+          </div>
+          <ChevronRight className={`w-5 h-5 text-muted-foreground transition-transform duration-300 shrink-0 ${isOpen ? "rotate-90" : ""}`} />
+        </div>
+
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <div className="px-5 pb-6 sm:px-8 sm:pb-8 pl-[4.5rem] sm:pl-[7.5rem]">
+                <p className="text-muted-foreground font-body text-sm sm:text-base leading-relaxed">{service.desc}</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </button>
+    </motion.div>
+  );
+};
 
 const SolutionsSection = () => {
   const ref = useRef(null);
@@ -32,59 +94,16 @@ const SolutionsSection = () => {
           </h2>
         </motion.div>
 
-        {/* Accordion-style numbered list */}
         <div className="max-w-4xl mx-auto space-y-4">
-          {services.map((service, i) => {
-            const Icon = service.icon;
-            const isOpen = active === i;
-            return (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, x: -30 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-              >
-                <button
-                  onClick={() => setActive(isOpen ? null : i)}
-                  className={`w-full text-left group rounded-2xl border transition-all duration-500 overflow-hidden ${
-                    isOpen
-                      ? "glass-card border-gold/30 shadow-[0_0_30px_rgba(255,215,0,0.08)]"
-                      : "glass-card border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.15)]"
-                  }`}
-                >
-                  <div className="flex items-center gap-6 p-6 md:p-8">
-                    <span className="text-3xl font-display font-extrabold text-gold/30 group-hover:text-gold/60 transition-colors min-w-[3rem]">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-colors">
-                      <Icon className="w-6 h-6 text-gold" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-lg md:text-xl font-display font-bold truncate">{service.title}</h3>
-                      <p className="text-gold/70 font-body text-sm">{service.category}</p>
-                    </div>
-                    <ChevronRight className={`w-5 h-5 text-muted-foreground transition-transform duration-300 shrink-0 ${isOpen ? "rotate-90" : ""}`} />
-                  </div>
-
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-8 pb-8 pl-[7.5rem]">
-                          <p className="text-muted-foreground font-body text-base leading-relaxed">{service.desc}</p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </button>
-              </motion.div>
-            );
-          })}
+          {services.map((service, i) => (
+            <ServiceItem
+              key={service.title}
+              service={service}
+              i={i}
+              isOpen={active === i}
+              toggle={() => setActive(prev => prev === i ? null : i)}
+            />
+          ))}
         </div>
       </div>
     </section>

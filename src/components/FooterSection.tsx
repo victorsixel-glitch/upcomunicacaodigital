@@ -1,7 +1,9 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { MessageCircle, Instagram, Linkedin, Mail, Send, Phone } from "lucide-react";
+import { MessageCircle, Instagram, Mail, Send, Phone } from "lucide-react";
 import logoUp from "@/assets/logo-up.png";
+import victorSixelDark from "@/assets/victor-sixel-dark.png";
+import victorSixelLight from "@/assets/victor-sixel-light.png";
 
 const FooterSection = () => {
   const ref = useRef(null);
@@ -123,17 +125,37 @@ const FooterSection = () => {
             <p className="text-sm text-muted-foreground font-body">
               © 2025 UP Comunicação Digital. Todos os direitos reservados.
             </p>
-            <div className="flex gap-4">
-              {[Instagram, Linkedin, Mail].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-11 h-11 rounded-full border border-[rgba(255,255,255,0.1)] flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/40 hover:shadow-[0_0_15px_rgba(255,215,0,0.2)] hover:-translate-y-1 transition-all duration-300"
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
-              ))}
+            <div className="flex items-center gap-4">
+              <a
+                href="https://www.instagram.com/upcomunicacaopmw/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-11 h-11 rounded-full border border-[rgba(255,255,255,0.1)] flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/40 hover:shadow-[0_0_15px_rgba(255,215,0,0.2)] hover:-translate-y-1 transition-all duration-300"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="mailto:upcomunicacaopmw@gmail.com"
+                className="w-11 h-11 rounded-full border border-[rgba(255,255,255,0.1)] flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/40 hover:shadow-[0_0_15px_rgba(255,215,0,0.2)] hover:-translate-y-1 transition-all duration-300"
+              >
+                <Mail className="w-5 h-5" />
+              </a>
             </div>
+          </div>
+
+          {/* Victor Sixel credit */}
+          <div className="flex flex-col items-center justify-center mt-10 pt-6 border-t border-[rgba(255,255,255,0.03)]">
+            <p className="text-xs text-muted-foreground/60 font-body mb-2">Pensado e desenvolvido por</p>
+            <img
+              src={victorSixelDark}
+              alt="Victor Sixel - Designer Gráfico"
+              className="h-10 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 dark:block hidden"
+            />
+            <img
+              src={victorSixelDark}
+              alt="Victor Sixel - Designer Gráfico"
+              className="h-10 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 dark:hidden block"
+            />
           </div>
         </div>
       </div>
