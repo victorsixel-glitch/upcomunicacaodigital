@@ -20,7 +20,7 @@ const SectionDivider = () => (
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-dark">
+    <div className="min-h-screen bg-background">
       <Header />
       <HeroSection />
       <SectionDivider />
