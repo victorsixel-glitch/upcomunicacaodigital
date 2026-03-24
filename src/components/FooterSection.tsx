@@ -146,15 +146,17 @@ const FooterSection = () => {
           {/* Victor Sixel credit */}
           <div className="flex flex-col items-center justify-center mt-10 pt-6 border-t border-[rgba(255,255,255,0.03)]">
             <p className="text-xs text-muted-foreground/60 font-body mb-2">Pensado e desenvolvido por</p>
+            {/* Dark mode: show white/inverted logo; Light mode: show dark logo */}
             <img
               src={victorSixelDark}
               alt="Victor Sixel - Designer Gráfico"
-              className="h-10 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 dark:block hidden"
+              className="h-10 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 light:hidden"
+              style={{ filter: "invert(1)" }}
             />
             <img
-              src={victorSixelDark}
+              src={victorSixelLight}
               alt="Victor Sixel - Designer Gráfico"
-              className="h-10 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 dark:hidden block"
+              className="h-10 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 hidden"
             />
           </div>
         </div>
