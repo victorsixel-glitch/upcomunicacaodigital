@@ -60,7 +60,7 @@ const MethodologySection = () => {
                   <div className={`flex ${isRight ? "justify-end" : "justify-start"}`}>
                     <div className="w-full md:w-[calc(50%-2.5rem)]">
                       <div className={`glass-card p-10 rounded-2xl relative overflow-hidden border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,215,0,0.3)] hover:shadow-[0_0_30px_rgba(255,215,0,0.08)] transition-all duration-500 group ${!isRight ? "md:text-right" : ""}`}>
-                        <span className="outline-number top-2 right-4 text-[7rem]">{step.number}</span>
+                        <span className="outline-number top-2 text-[7rem]" style={{ [isRight ? 'right' : 'left']: '1rem' }}>{step.number}</span>
                         <div className="relative z-10">
                           <div className={`w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/20 transition-colors ${!isRight ? "md:ml-auto" : ""}`}>
                             <Icon className="w-7 h-7 text-gold" />
