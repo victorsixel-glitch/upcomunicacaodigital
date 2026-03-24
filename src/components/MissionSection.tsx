@@ -43,10 +43,9 @@ const MissionSection = () => {
           </h2>
         </motion.div>
 
-        {/* Horizontal flow layout with connecting line */}
         <div className="relative max-w-6xl mx-auto">
-          {/* Connecting horizontal line */}
-          <div className="hidden md:block absolute top-[4.5rem] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+          {/* Connecting horizontal line — centered with icon boxes */}
+          <div className="hidden md:block absolute top-[2.75rem] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
           <div className="grid md:grid-cols-3 gap-0">
             {pillars.map((p, i) => {

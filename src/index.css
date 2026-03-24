@@ -40,6 +40,40 @@
     --glass-border: rgba(255, 255, 255, 0.1);
     --glow-yellow: rgba(255, 215, 0, 0.4);
   }
+
+  .light {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 5%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
+
+    --primary: 51 100% 45%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 51 100% 45%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 0% / 0.1;
+    --input: 0 0% 0% / 0.1;
+    --ring: 51 100% 45%;
+
+    --glass-bg: rgba(0, 0, 0, 0.03);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --glow-yellow: rgba(200, 170, 0, 0.3);
+  }
 }
 
 @layer base {
@@ -49,7 +83,15 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+  }
+
+  .dark body,
+  :root body {
     background-color: #050505;
+  }
+
+  .light body {
+    background-color: hsl(0 0% 98%);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -99,6 +141,14 @@
     @apply absolute text-[8rem] font-display font-extrabold leading-none select-none pointer-events-none;
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.06);
     color: transparent;
+  }
+
+  .light .outline-number {
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.06);
+  }
+
+  .light .glass-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
 }
 
