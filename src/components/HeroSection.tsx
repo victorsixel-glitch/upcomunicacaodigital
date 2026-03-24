@@ -49,7 +49,7 @@ const HeroSection = () => {
             BRANDING · FILMMAKER · PERFORMANCE
           </motion.p>
 
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-extrabold leading-[1.02] tracking-[-0.02em] mb-8">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-extrabold leading-[1.05] tracking-[-0.02em] mb-8">
             Sua agência de alta performance em{" "}
             <span className="text-gold">Palmas</span>, pronta para o{" "}
             <span className="text-gold">Brasil</span>.
@@ -102,7 +102,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="relative hidden lg:block"
         >
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-2 gap-5 relative">
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="glass-card overflow-hidden rounded-2xl aspect-[3/4] relative group"
@@ -130,6 +130,37 @@ const HeroSection = () => {
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-5 z-10">
                 <p className="text-base font-display font-bold text-gold">Estratégia de Marketing & Branding</p>
               </div>
+            </motion.div>
+
+            {/* Floating 3D Tags */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
+              transition={{ delay: 0.8, duration: 3, repeat: Infinity, repeatType: "reverse" }}
+              className="absolute -left-6 top-[15%] z-20 glass-card px-4 py-2.5 rounded-xl border border-gold/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(255,215,0,0.1)]"
+              style={{ transform: "perspective(600px) rotateY(8deg)" }}
+            >
+              <span className="text-sm font-display font-bold text-gold">🎯 +98% Retenção</span>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1, y: [0, 10, 0] }}
+              transition={{ delay: 1.1, duration: 3.5, repeat: Infinity, repeatType: "reverse" }}
+              className="absolute -right-4 top-[40%] z-20 glass-card px-4 py-2.5 rounded-xl border border-gold/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(255,215,0,0.1)]"
+              style={{ transform: "perspective(600px) rotateY(-6deg)" }}
+            >
+              <span className="text-sm font-display font-bold text-gold">🚀 100+ Marcas</span>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
+              transition={{ delay: 1.4, duration: 2.8, repeat: Infinity, repeatType: "reverse" }}
+              className="absolute left-[10%] -bottom-4 z-20 glass-card px-4 py-2.5 rounded-xl border border-gold/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(255,215,0,0.1)]"
+              style={{ transform: "perspective(600px) rotateX(6deg)" }}
+            >
+              <span className="text-sm font-display font-bold text-gold">⚡ Alta Performance</span>
             </motion.div>
           </div>
           <div className="absolute -z-10 -inset-4 bg-gradient-to-r from-gold/5 to-transparent rounded-3xl blur-xl" />
