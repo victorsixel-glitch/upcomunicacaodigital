@@ -5,21 +5,21 @@ import { Compass, Eye, Heart } from "lucide-react";
 const pillars = [
   {
     icon: Compass,
-    number: "01",
     title: "Missão",
     text: "Transformar ideias em conexões reais. Potencializar marcas por meio de soluções inteligentes de comunicação que geram impacto, resultados e relevância.",
+    accent: "from-gold/20 to-gold/5",
   },
   {
     icon: Eye,
-    number: "02",
     title: "Visão",
     text: "Ser referência em comunicação que move, emociona e converte. A agência que une inovação, propósito e resultados — que entrega além do esperado.",
+    accent: "from-gold/15 to-transparent",
   },
   {
     icon: Heart,
-    number: "03",
     title: "Valores",
     text: "Criatividade com propósito. Transparência. Parceria verdadeira. Inovação como cultura. Responsabilidade, ética e a Atitude UP: energia para subir sempre.",
+    accent: "from-gold/10 to-gold/5",
   },
 ];
 
@@ -43,30 +43,38 @@ const MissionSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {pillars.map((p, i) => {
-            const Icon = p.icon;
-            return (
-              <motion.div
-                key={p.title}
-                initial={{ opacity: 0, y: 40 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
-                className="group"
-              >
-                <div className="glass-card p-10 rounded-2xl border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,215,0,0.2)] hover:shadow-[0_0_30px_rgba(255,215,0,0.06)] transition-all duration-500 h-full relative overflow-hidden">
-                  <span className="outline-number top-1 right-3 text-[7rem]">{p.number}</span>
-                  <div className="relative z-10">
-                    <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
-                      <Icon className="w-7 h-7 text-gold" />
-                    </div>
-                    <h3 className="text-2xl font-display font-bold mb-4">{p.title}</h3>
-                    <p className="text-muted-foreground font-body text-base leading-relaxed">{p.text}</p>
+        {/* Horizontal flow layout with connecting line */}
+        <div className="relative max-w-6xl mx-auto">
+          {/* Connecting horizontal line */}
+          <div className="hidden md:block absolute top-[4.5rem] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+
+          <div className="grid md:grid-cols-3 gap-0">
+            {pillars.map((p, i) => {
+              const Icon = p.icon;
+              return (
+                <motion.div
+                  key={p.title}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: i * 0.2 }}
+                  className="relative flex flex-col items-center text-center px-8"
+                >
+                  {/* Circle node */}
+                  <div className="relative z-10 mb-8">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      className={`w-[5.5rem] h-[5.5rem] rounded-2xl bg-gradient-to-br ${p.accent} border border-gold/20 flex items-center justify-center shadow-[0_0_40px_rgba(255,215,0,0.1)] backdrop-blur-sm`}
+                    >
+                      <Icon className="w-9 h-9 text-gold" />
+                    </motion.div>
                   </div>
-                </div>
-              </motion.div>
-            );
-          })}
+
+                  <h3 className="text-2xl font-display font-bold mb-4 text-gold">{p.title}</h3>
+                  <p className="text-muted-foreground font-body text-base leading-relaxed max-w-xs">{p.text}</p>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
