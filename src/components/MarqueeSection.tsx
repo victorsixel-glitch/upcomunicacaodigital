@@ -28,7 +28,7 @@ const MarqueeSection = () => {
   const inView = useInView(ref, { once: true });
 
   return (
-    <section className="py-20 relative overflow-hidden" ref={ref}>
+    <section className="py-20 relative overflow-hidden bg-dark" ref={ref}>
       <div className="container mx-auto px-6 mb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,8 +36,8 @@ const MarqueeSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <p className="section-subtitle mb-4 text-base">NOSSOS CLIENTES</p>
-          <h2 className="text-3xl sm:text-4xl font-display font-bold">
+          <p className="section-subtitle mb-4 text-base !text-gold">NOSSOS CLIENTES</p>
+          <h2 className="text-3xl sm:text-4xl font-display font-bold text-white">
             Marcas que confiam no nosso <span className="text-gold">UP</span>
           </h2>
         </motion.div>
@@ -47,7 +47,7 @@ const MarqueeSection = () => {
         <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-dark to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-dark to-transparent z-10" />
 
-        <div className="flex animate-marquee">
+        <div className="flex animate-marquee-fast">
           {[...clientLogos, ...clientLogos].map((logo, i) => (
             <div
               key={i}

@@ -15,7 +15,9 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     if (typeof window !== "undefined") {
-      return (localStorage.getItem("theme") as "dark" | "light") || "dark";
+      const stored = localStorage.getItem("theme");
+      if (stored === "dark" || stored === "light") return stored;
+      return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
     }
     return "dark";
   });
@@ -41,7 +43,7 @@ const Header = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "glass-card border-b border-[rgba(255,255,255,0.08)]"
+          ? "glass-card border-b border-border"
           : "bg-transparent"
       }`}
     >
