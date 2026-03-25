@@ -103,13 +103,14 @@ const FooterSection = () => {
                   href="https://sixel.myportfolio.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block hover:opacity-100 opacity-70 transition-opacity duration-300"
+                  className="inline-flex items-center gap-3 hover:opacity-100 opacity-70 transition-opacity duration-300"
                 >
                   <img
                     src={victorSixelAvatar}
                     alt="Victor Sixel - Designer Gráfico"
-                    className="h-16 w-auto invert"
+                    className="h-12 w-12 object-contain invert rounded-full"
                   />
+                  <span className="text-sm text-zinc-400 font-display font-semibold">Victor Sixel</span>
                 </a>
               </div>
             </div>

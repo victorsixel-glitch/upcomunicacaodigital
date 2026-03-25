@@ -16,14 +16,6 @@ const ServiceItem = ({ service, i, isOpen, toggle }: { service: typeof services[
   const inView = useInView(itemRef, { once: true, margin: "-50px" });
   const Icon = service.icon;
 
-  // Auto-open on scroll into view
-  useEffect(() => {
-    if (inView && !isOpen) {
-      const timer = setTimeout(() => toggle(), i * 200);
-      return () => clearTimeout(timer);
-    }
-  }, [inView]);
-
   return (
     <motion.div
       ref={itemRef}
@@ -76,11 +68,30 @@ const ServiceItem = ({ service, i, isOpen, toggle }: { service: typeof services[
 const SolutionsSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
-  const [active, setActive] = useState<number | null>(null);
+  const [openItems, setOpenItems] = useState<Set<number>>(new Set());
+
+  // Auto-open all items cumulatively on scroll
+  useEffect(() => {
+    if (inView) {
+      services.forEach((_, i) => {
+        setTimeout(() => {
+          setOpenItems(prev => new Set([...prev, i]));
+        }, i * 300);
+      });
+    }
+  }, [inView]);
+
+  const toggle = (i: number) => {
+    setOpenItems(prev => {
+      const next = new Set(prev);
+      if (next.has(i)) next.delete(i);
+      else next.add(i);
+      return next;
+    });
+  };
 
   return (
     <section id="solucoes" className="py-24 md:py-32 relative" ref={ref}>
-      <div className="absolute inset-0 bg-dark-card/50" />
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -100,8 +111,8 @@ const SolutionsSection = () => {
               key={service.title}
               service={service}
               i={i}
-              isOpen={active === i}
-              toggle={() => setActive(prev => prev === i ? null : i)}
+              isOpen={openItems.has(i)}
+              toggle={() => toggle(i)}
             />
           ))}
         </div>

@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useCallback, useState } from "react";
 import { Lightbulb, Target, Megaphone, MessageCircle } from "lucide-react";
 import aboutTeam from "@/assets/about-team.png";
 
@@ -12,6 +12,30 @@ const badges = [
 const AboutSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const btnRef = useRef<HTMLAnchorElement>(null);
+  const [btnOffset, setBtnOffset] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const btn = btnRef.current;
+    if (!btn) return;
+    const rect = btn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const maxDist = 180;
+    if (dist < maxDist) {
+      const strength = 1 - dist / maxDist;
+      setBtnOffset({ x: dx * strength * 0.45, y: dy * strength * 0.45 });
+    } else {
+      setBtnOffset({ x: 0, y: 0 });
+    }
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setBtnOffset({ x: 0, y: 0 });
+  }, []);
 
   return (
     <section id="sobre" className="py-24 md:py-32 relative" ref={ref}>
@@ -61,16 +85,34 @@ const AboutSection = () => {
               performance avançadas, sempre com foco em entregar valor mensurável.
             </p>
 
-            <motion.a
-              href="#orcamento"
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.6 }}
-              className="inline-flex items-center gap-3 px-10 py-5 bg-gold text-primary-foreground font-display font-bold text-lg rounded-xl hover:shadow-[0_0_40px_rgba(255,215,0,0.4)] transition-all duration-300 group"
+            <div
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{ padding: "40px", margin: "-40px" }}
             >
-              <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-              Solicitar Orçamento
-            </motion.a>
+              <motion.a
+                ref={btnRef}
+                href="#orcamento"
+                animate={{
+                  x: btnOffset.x,
+                  y: btnOffset.y,
+                  boxShadow: [
+                    "0 0 20px rgba(255,215,0,0.3), 0 0 40px rgba(255,215,0,0.15)",
+                    "0 0 30px rgba(255,215,0,0.5), 0 0 60px rgba(255,215,0,0.25)",
+                    "0 0 20px rgba(255,215,0,0.3), 0 0 40px rgba(255,215,0,0.15)",
+                  ],
+                }}
+                transition={{
+                  x: { type: "spring", stiffness: 200, damping: 15, mass: 0.5 },
+                  y: { type: "spring", stiffness: 200, damping: 15, mass: 0.5 },
+                  boxShadow: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+                }}
+                className="inline-flex items-center gap-3 px-10 py-5 bg-gold text-primary-foreground font-display font-bold text-lg rounded-xl group"
+              >
+                <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+                Solicitar Orçamento
+              </motion.a>
+            </div>
           </motion.div>
 
           <motion.div
