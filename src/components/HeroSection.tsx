@@ -89,25 +89,26 @@ const HeroSection = () => {
             </motion.a>
             <a
               href="#portfolio"
-              className="inline-flex items-center px-10 py-5 border border-[rgba(255,255,255,0.2)] text-foreground font-display font-semibold text-lg rounded-xl glass-card hover:border-[rgba(255,255,255,0.4)] transition-all duration-300"
+              className="inline-flex items-center px-10 py-5 border border-border text-foreground font-display font-semibold text-lg rounded-xl glass-card hover:border-gold/30 transition-all duration-300"
             >
               Ver Portfólio
             </a>
           </div>
         </motion.div>
 
+        {/* Images - visible on all screens */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative hidden lg:block"
+          className="relative"
         >
-          {/* Floating 3D Tags — positioned outside image grid */}
+          {/* Floating 3D Tags */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
             transition={{ delay: 0.8, duration: 3, repeat: Infinity, repeatType: "reverse" }}
-            className="absolute -left-10 top-[5%] z-30 glass-card px-4 py-2.5 rounded-xl border border-gold/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(255,215,0,0.1)]"
+            className="absolute -left-4 lg:-left-10 top-[5%] z-30 glass-card px-4 py-2.5 rounded-xl border border-gold/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(255,215,0,0.1)] hidden sm:block"
             style={{ transform: "perspective(600px) rotateY(8deg)" }}
           >
             <span className="text-sm font-display font-bold text-gold">🎯 +98% Retenção</span>
@@ -117,7 +118,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1, y: [0, 10, 0] }}
             transition={{ delay: 1.1, duration: 3.5, repeat: Infinity, repeatType: "reverse" }}
-            className="absolute -right-8 top-[10%] z-30 glass-card px-4 py-2.5 rounded-xl border border-gold/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(255,215,0,0.1)]"
+            className="absolute -right-4 lg:-right-8 top-[10%] z-30 glass-card px-4 py-2.5 rounded-xl border border-gold/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(255,215,0,0.1)] hidden sm:block"
             style={{ transform: "perspective(600px) rotateY(-6deg)" }}
           >
             <span className="text-sm font-display font-bold text-gold">🚀 100+ Marcas</span>
@@ -127,13 +128,13 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
             transition={{ delay: 1.4, duration: 2.8, repeat: Infinity, repeatType: "reverse" }}
-            className="absolute left-[20%] -bottom-10 z-30 glass-card px-4 py-2.5 rounded-xl border border-gold/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(255,215,0,0.1)]"
+            className="absolute left-[20%] -bottom-4 lg:-bottom-10 z-30 glass-card px-4 py-2.5 rounded-xl border border-gold/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(255,215,0,0.1)] hidden sm:block"
             style={{ transform: "perspective(600px) rotateX(6deg)" }}
           >
             <span className="text-sm font-display font-bold text-gold">⚡ Alta Performance</span>
           </motion.div>
 
-          <div className="grid grid-cols-2 gap-5 relative">
+          <div className="grid grid-cols-2 gap-4 sm:gap-5 relative">
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="glass-card overflow-hidden rounded-2xl aspect-[3/4] relative group"
@@ -144,13 +145,13 @@ const HeroSection = () => {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-5 z-10">
-                <p className="text-base font-display font-bold text-gold">Palmas, Tocantins</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-4 sm:p-5 z-10">
+                <p className="text-sm sm:text-base font-display font-bold text-gold">Palmas, Tocantins</p>
               </div>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="glass-card overflow-hidden rounded-2xl aspect-[3/4] mt-12 relative group"
+              className="glass-card overflow-hidden rounded-2xl aspect-[3/4] mt-8 sm:mt-12 relative group"
             >
               <img
                 src={heroTeam}
@@ -158,8 +159,8 @@ const HeroSection = () => {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-tl from-gold/10 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-5 z-10">
-                <p className="text-base font-display font-bold text-gold">Estratégia de Marketing & Branding</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-4 sm:p-5 z-10">
+                <p className="text-sm sm:text-base font-display font-bold text-gold">Estratégia de Marketing & Branding</p>
               </div>
             </motion.div>
           </div>
