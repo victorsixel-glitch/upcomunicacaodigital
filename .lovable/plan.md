@@ -1,29 +1,24 @@
 
 
 ## Problema
-O header com scroll usa `glass-card` (fundo `rgba(255,255,255,0.03)` no dark mode), que é quase transparente e gera pouco contraste com o conteúdo abaixo.
+O card "Estratégia & Criação" (i=1, `isRight=false`) deveria ter ícone e texto justificados à direita em todas as resoluções, mas no mobile está aparecendo à esquerda.
 
 ## Solução
-Aumentar a opacidade do fundo do header no estado "scrolled" sem sair do design system. Em vez de usar o `glass-card` genérico, aplicar um fundo semi-opaco mais forte com blur intenso:
+Forçar o alinhamento à direita no card do meio independentemente do breakpoint. Atualmente as classes `text-right` e `ml-auto` já são aplicadas via `!isRight`, mas vou reforçar para garantir que funcione em mobile também, adicionando `items-end` no container interno e garantindo que o `text-right` se aplique corretamente.
 
-### Alterações em `Header.tsx`
-- Quando `scrolled`, trocar a classe `glass-card` por estilos dedicados:
-  - **Dark mode**: `bg-black/80 backdrop-blur-xl border-b border-white/10`
-  - **Light mode**: `bg-white/85 backdrop-blur-xl border-b border-black/10 shadow-sm`
-- Usar classes condicionais do Tailwind com `dark:` ou checar o tema via estado já existente
-- Manter `bg-transparent` quando não há scroll
+### Alterações em `MethodologySection.tsx`
 
-### Detalhes técnicos
-Na linha 44-48 do Header, substituir a lógica de classes:
+**Linha 72-78** — Adicionar `items-end` ao wrapper do conteúdo quando `!isRight`, e `text-right` explícito nos textos:
+
 ```tsx
-className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-  scrolled
-    ? "bg-black/80 dark:bg-black/80 light:bg-white/85 backdrop-blur-xl border-b border-border shadow-lg shadow-black/5"
-    : "bg-transparent"
-}`}
+<div className={`relative z-10 ${!isRight ? "flex flex-col items-end text-right" : ""}`}>
+  <div className={`w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/20 transition-colors`}>
+    <Icon className="w-7 h-7 text-gold" />
+  </div>
+  <h3 className="text-2xl font-display font-bold mb-3">{step.title}</h3>
+  <p className="text-muted-foreground font-body text-base leading-relaxed">{step.desc}</p>
+</div>
 ```
 
-Como o projeto usa classes `dark`/`light` no `<html>`, usaremos seletores baseados no estado `theme` já disponível no componente para aplicar `bg-black/80` (dark) ou `bg-white/85` (light) — garantindo contraste real sem quebrar o visual glass do design system.
-
-O menu mobile (`glass-card`) também receberá o mesmo tratamento de opacidade aumentada.
+Isso usa `flex flex-col items-end` para alinhar todos os filhos (ícone, título, texto) à direita, removendo a necessidade do `ml-auto` individual no ícone. O `text-right` no container garante alinhamento do texto em todas as resoluções.
 
