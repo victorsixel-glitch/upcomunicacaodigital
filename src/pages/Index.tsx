@@ -42,6 +42,8 @@ const Index = () => {
       <CasesSection />
       <SectionDivider />
       <TestimonialsSection />
+      <SectionDivider />
+      <InstagramSection />
       <FooterSection />
     </div>
   );
