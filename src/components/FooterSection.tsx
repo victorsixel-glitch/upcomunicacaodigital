@@ -130,9 +130,13 @@ const FooterSection = () => {
                 <Mail className="w-4 h-4 text-gold" />
                 upcomunicacaopmw@gmail.com
               </a>
-              <a href="https://wa.me/5563984257831" className="flex items-center gap-2 text-base text-zinc-400 font-body hover:text-white transition-colors">
+              <a href="https://wa.me/5563984257831" className="flex items-center gap-2 text-base text-zinc-400 font-body mb-3 hover:text-white transition-colors">
                 <Phone className="w-4 h-4 text-gold" />
                 (63) 98425-7831
+              </a>
+              <a href="https://www.instagram.com/upcomunicacaopmw/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-base text-zinc-400 font-body hover:text-white transition-colors">
+                <Instagram className="w-4 h-4 text-gold" />
+                @upcomunicacaopmw
               </a>
             </div>
           </div>
