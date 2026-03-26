@@ -61,7 +61,7 @@ const MethodologySection = () => {
 
                   <div className={`flex ${isRight ? "md:justify-end" : "md:justify-start"} justify-start`}>
                     <div className="w-full md:w-[calc(50%-2.5rem)]">
-                      <div className={`glass-card p-8 md:p-10 rounded-2xl relative overflow-hidden border border-border hover:border-gold/30 hover:shadow-[0_0_30px_rgba(255,215,0,0.08)] transition-all duration-500 group ${!isRight ? "md:text-right" : ""}`}>
+                      <div className={`glass-card p-8 md:p-10 rounded-2xl relative overflow-hidden border border-border hover:border-gold/30 hover:shadow-[0_0_30px_rgba(255,215,0,0.08)] transition-all duration-500 group ${!isRight ? "text-right" : ""}`}>
                         {/* Number positioned away from icon */}
                         <span
                           className="absolute text-[5rem] md:text-[7rem] font-display font-extrabold leading-none select-none pointer-events-none opacity-[0.04] top-2"
@@ -70,7 +70,7 @@ const MethodologySection = () => {
                           {step.number}
                         </span>
                         <div className="relative z-10">
-                          <div className={`w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/20 transition-colors ${!isRight ? "md:ml-auto" : ""}`}>
+                          <div className={`w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/20 transition-colors ${!isRight ? "ml-auto" : ""}`}>
                             <Icon className="w-7 h-7 text-gold" />
                           </div>
                           <h3 className="text-2xl font-display font-bold mb-3">{step.title}</h3>

@@ -10,6 +10,7 @@ import DifferentialsSection from "@/components/DifferentialsSection";
 import SolutionsSection from "@/components/SolutionsSection";
 import CasesSection from "@/components/CasesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import InstagramSection from "@/components/InstagramSection";
 import FooterSection from "@/components/FooterSection";
 
 const SectionDivider = () => (
