@@ -69,8 +69,8 @@ const MethodologySection = () => {
                         >
                           {step.number}
                         </span>
-                        <div className="relative z-10">
-                          <div className={`w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/20 transition-colors ${!isRight ? "ml-auto" : ""}`}>
+                        <div className={`relative z-10 ${!isRight ? "flex flex-col items-end text-right" : ""}`}>
+                          <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/20 transition-colors">
                             <Icon className="w-7 h-7 text-gold" />
                           </div>
                           <h3 className="text-2xl font-display font-bold mb-3">{step.title}</h3>
