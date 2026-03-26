@@ -43,7 +43,9 @@ const Header = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "glass-card border-b border-border"
+          ? theme === "dark"
+            ? "bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/10"
+            : "bg-white/85 backdrop-blur-xl border-b border-black/10 shadow-lg shadow-black/5"
           : "bg-transparent"
       }`}
     >
@@ -106,7 +108,11 @@ const Header = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden glass-card mx-4 mb-4 p-6 rounded-xl"
+          className={`md:hidden mx-4 mb-4 p-6 rounded-xl backdrop-blur-xl border ${
+            theme === "dark"
+              ? "bg-black/85 border-white/10"
+              : "bg-white/90 border-black/10 shadow-lg"
+          }`}
         >
           {navLinks.map((link) => (
             <a
