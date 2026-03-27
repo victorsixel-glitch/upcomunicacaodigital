@@ -3,9 +3,9 @@ import { useRef } from "react";
 import { Search, Lightbulb, Rocket } from "lucide-react";
 
 const steps = [
-  { icon: Search, number: "01", title: "Imersão & Diagnóstico", desc: "Mergulhamos no seu universo para entender desafios, mercado e oportunidades antes de qualquer ação." },
-  { icon: Lightbulb, number: "02", title: "Estratégia & Criação", desc: "Transformamos insights em estratégias criativas e visuais que comunicam a essência da sua marca." },
-  { icon: Rocket, number: "03", title: "Escala & Performance", desc: "Lançamos, medimos e otimizamos continuamente para garantir crescimento real e sustentável." },
+  { icon: Search, number: "01", desc: "Mergulhamos no seu universo para entender desafios, mercado e oportunidades antes de qualquer ação." },
+  { icon: Lightbulb, number: "02", desc: "Transformamos insights em estratégias criativas e visuais que comunicam a essência da sua marca." },
+  { icon: Rocket, number: "03", desc: "Lançamos, medimos e otimizamos continuamente para garantir crescimento real e sustentável." },
 ];
 
 const MethodologySection = () => {
@@ -28,7 +28,7 @@ const MethodologySection = () => {
         >
           <p className="section-subtitle mb-4 text-base">METODOLOGIA</p>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold">
-            O Caminho para o <span className="text-gold">UP</span>
+            Nossa <span className="text-gold">Imersão</span>
           </h2>
         </motion.div>
 
@@ -73,7 +73,6 @@ const MethodologySection = () => {
                           <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/20 transition-colors">
                             <Icon className="w-7 h-7 text-gold" />
                           </div>
-                          <h3 className="text-2xl font-display font-bold mb-3">{step.title}</h3>
                           <p className="text-muted-foreground font-body text-base leading-relaxed">{step.desc}</p>
                         </div>
                       </div>

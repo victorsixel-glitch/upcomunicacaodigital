@@ -45,9 +45,9 @@ const MissionSection = () => {
 
         <div className="relative max-w-6xl mx-auto">
           {/* Connecting horizontal line — centered with icon boxes */}
-          <div className="hidden md:block absolute top-[2.75rem] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+          <div className="hidden md:block absolute top-[calc(1.5rem+2.5rem)] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
-          <div className="grid md:grid-cols-3 gap-0">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-6">
             {pillars.map((p, i) => {
               const Icon = p.icon;
               return (
@@ -56,20 +56,20 @@ const MissionSection = () => {
                   initial={{ opacity: 0, y: 40 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: i * 0.2 }}
-                  className="relative flex flex-col items-center text-center px-8"
+                  className="relative flex flex-col items-center text-center px-4 sm:px-8 py-6"
                 >
                   {/* Circle node */}
-                  <div className="relative z-10 mb-8">
+                  <div className="relative z-10 mb-6">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
-                      className={`w-[5.5rem] h-[5.5rem] rounded-2xl bg-gradient-to-br ${p.accent} border border-gold/20 flex items-center justify-center shadow-[0_0_40px_rgba(255,215,0,0.1)] backdrop-blur-sm`}
+                      className={`w-[5rem] h-[5rem] rounded-2xl bg-gradient-to-br ${p.accent} border border-gold/20 flex items-center justify-center shadow-[0_0_40px_rgba(255,215,0,0.1)] backdrop-blur-sm`}
                     >
-                      <Icon className="w-9 h-9 text-gold" />
+                      <Icon className="w-8 h-8 text-gold" />
                     </motion.div>
                   </div>
 
-                  <h3 className="text-2xl font-display font-bold mb-4 text-gold">{p.title}</h3>
-                  <p className="text-muted-foreground font-body text-base leading-relaxed max-w-xs">{p.text}</p>
+                  <h3 className="text-2xl font-display font-bold mb-3 text-gold capitalize">{p.title}</h3>
+                  <p className="text-muted-foreground font-body text-sm sm:text-base leading-relaxed max-w-xs">{p.text}</p>
                 </motion.div>
               );
             })}

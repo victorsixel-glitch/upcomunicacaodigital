@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useRef, useCallback, useState } from "react";
-import heroTeam from "@/assets/hero-team.png";
+import heroCamera from "@/assets/hero-camera.jpg";
+import heroLaptop from "@/assets/hero-laptop.png";
 import heroPalmas from "@/assets/hero-palmas.png";
 
 const HeroSection = () => {
@@ -49,10 +50,9 @@ const HeroSection = () => {
             BRANDING · FILMMAKER · PERFORMANCE
           </motion.p>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-extrabold leading-[1.05] tracking-[-0.02em] mb-8">
-            Sua agência de alta performance em{" "}
-            <span className="text-gold">Palmas</span>, pronta para o{" "}
-            <span className="text-gold">Brasil</span>.
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display font-extrabold leading-[1.05] tracking-[-0.02em] mb-8">
+            Sua agência de alta{" "}
+            <span className="text-gold">performance</span>.
           </h1>
 
           <p className="text-xl text-muted-foreground max-w-xl mb-12 font-body leading-relaxed">
@@ -154,13 +154,13 @@ const HeroSection = () => {
               className="glass-card overflow-hidden rounded-2xl aspect-[3/4] mt-8 sm:mt-12 relative group"
             >
               <img
-                src={heroTeam}
-                alt="Equipe UP Comunicação Digital"
+                src={heroCamera}
+                alt="Produção audiovisual UP Comunicação"
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-tl from-gold/10 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-4 sm:p-5 z-10">
-                <p className="text-sm sm:text-base font-display font-bold text-gold">Estratégia de Marketing & Branding</p>
+                <p className="text-sm sm:text-base font-display font-bold text-gold">Produção Audiovisual</p>
               </div>
             </motion.div>
           </div>

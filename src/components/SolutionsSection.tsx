@@ -116,6 +116,20 @@ const SolutionsSection = () => {
             />
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="text-center mt-12"
+        >
+          <a
+            href="#orcamento"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-gold text-primary-foreground font-display font-bold text-lg rounded-xl hover:shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all duration-300"
+          >
+            Solicitar Orçamento
+          </a>
+        </motion.div>
       </div>
     </section>
   );
