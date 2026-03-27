@@ -125,8 +125,8 @@ const AboutSection = () => {
               <div className="h-[360px] md:h-[440px] overflow-hidden">
                 <img
                   src={aboutTeam}
-                  alt="Equipe UP Comunicação analisando resultados"
-                  className="w-full h-[140%] object-cover object-center -mt-[15%] group-hover:scale-[1.03] transition-transform duration-700"
+                  alt="Equipe UP Comunicação"
+                  className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700"
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-dark/20 rounded-2xl" />

@@ -141,12 +141,12 @@ const HeroSection = () => {
             >
               <img
                 src={heroPalmas}
-                alt="Palmas, Tocantins"
-                className="absolute inset-0 w-full h-full object-cover"
+                alt="Equipe UP Comunicação"
+                className="absolute inset-0 w-full h-full object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-4 sm:p-5 z-10">
-                <p className="text-sm sm:text-base font-display font-bold text-gold">Palmas, Tocantins</p>
+                <p className="text-sm sm:text-base font-display font-bold text-gold">Estratégia Digital</p>
               </div>
             </motion.div>
             <motion.div
