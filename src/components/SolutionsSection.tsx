@@ -1,6 +1,6 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { ChevronRight, Briefcase, Palette, Camera, ClipboardCheck, Rocket, Globe } from "lucide-react";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { ChevronRight, Briefcase, Palette, Camera, ClipboardCheck, Rocket, Globe, MessageCircle } from "lucide-react";
 
 const services = [
   { icon: Briefcase, title: "Consultoria em Marketing & Gestão de redes", category: "Estratégia & Gestão", desc: "A estratégia é o ponto de partida para qualquer resultado sólido. Oferecemos consultoria personalizada em marketing e gestão de redes sociais para potencializar sua presença digital." },
@@ -117,7 +117,7 @@ const SolutionsSection = () => {
           ))}
         </div>
 
-        <SolutionsCTA inView={inView} />
+        <SolutionsCTAButton inView={inView} />
       </div>
     </section>
   );
