@@ -27,6 +27,8 @@ const Index = () => {
       <SectionDivider />
       <ResultsSection />
       <SectionDivider />
+      <SolutionsSection />
+      <SectionDivider />
       <MethodologySection />
       <CtaBannerSection />
       <SectionDivider />
@@ -36,8 +38,6 @@ const Index = () => {
       <MissionSection />
       <SectionDivider />
       <DifferentialsSection />
-      <SectionDivider />
-      <SolutionsSection />
       <SectionDivider />
       <CasesSection />
       <SectionDivider />

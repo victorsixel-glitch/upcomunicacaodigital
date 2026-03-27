@@ -4,8 +4,8 @@ import { Quote } from "lucide-react";
 
 const testimonials = [
   { name: "Carlos Mendes", role: "CEO, TechStart", text: "A UP transformou completamente nossa presença digital. Em 6 meses, triplicamos nosso engajamento e dobramos as conversões." },
-  { name: "Ana Beatriz", role: "Diretora, Viva Tocantins", text: "Profissionalismo e criatividade em outro nível. A identidade visual que criaram para nós superou todas as expectativas." },
-  { name: "Roberto Silva", role: "Fundador, Tchê Burguer", text: "Do branding ao packaging, a UP entendeu exatamente o que precisávamos. Nosso faturamento cresceu 40% após o rebranding." },
+  { name: "Roger Trindade", role: "Presidente, Instituto Viva Tocantins", text: "Profissionalismo e criatividade em outro nível. A identidade visual que criaram para nós superou todas as expectativas." },
+  { name: "Lucas Scherer", role: "Fundador, Tchê Burguer", text: "Do branding ao packaging, a UP entendeu exatamente o que precisávamos. Nosso faturamento cresceu 40% após o rebranding." },
 ];
 
 const TestimonialsSection = () => {
