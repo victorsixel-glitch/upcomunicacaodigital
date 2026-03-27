@@ -1,17 +1,38 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { MessageCircle, Instagram, Mail, Send, Phone } from "lucide-react";
+import { useRef, useCallback, useState } from "react";
+import { MessageCircle, Instagram, Mail, Phone } from "lucide-react";
 import logoUp from "@/assets/logo-up.png";
 import victorSixelAvatar from "@/assets/victor-sixel-avatar.png";
+
+const WA_URL = "https://wa.me/5563984257831?text=Olá! Vim pelo site e gostaria de solicitar um orçamento.";
 
 const FooterSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const btnRef = useRef<HTMLAnchorElement>(null);
+  const [btnOffset, setBtnOffset] = useState({ x: 0, y: 0 });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const btn = btnRef.current;
+    if (!btn) return;
+    const rect = btn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const maxDist = 180;
+    if (dist < maxDist) {
+      const strength = 1 - dist / maxDist;
+      setBtnOffset({ x: dx * strength * 0.45, y: dy * strength * 0.45 });
+    } else {
+      setBtnOffset({ x: 0, y: 0 });
+    }
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setBtnOffset({ x: 0, y: 0 });
+  }, []);
 
   return (
     <footer ref={ref}>
@@ -24,65 +45,44 @@ const FooterSection = () => {
           transition={{ duration: 0.7 }}
           className="container mx-auto px-6 relative z-10"
         >
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="text-center lg:text-left">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display font-extrabold text-primary-foreground mb-8 leading-tight">
-                Pronto para dar o UP que sua marca precisa?
-              </h2>
-              <p className="text-primary-foreground/70 font-body text-xl mb-10 max-w-xl">
-                Preencha o formulário e nossa equipe entrará em contato em até <strong className="text-primary-foreground">48 horas</strong> com uma proposta personalizada.
-              </p>
-              <a
-                href="https://wa.me/5563984257831"
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display font-extrabold text-primary-foreground mb-8 leading-tight">
+              Pronto para dar o UP que sua marca precisa?
+            </h2>
+            <p className="text-primary-foreground/70 font-body text-xl mb-12 max-w-xl mx-auto">
+              Fale direto com nossa equipe pelo WhatsApp e receba uma proposta personalizada em até <strong className="text-primary-foreground">48 horas</strong>.
+            </p>
+            <div
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{ padding: "40px", margin: "-40px" }}
+              className="inline-block"
+            >
+              <motion.a
+                ref={btnRef}
+                href={WA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-10 py-5 bg-dark text-white font-display font-bold text-lg rounded-xl hover:bg-dark-card transition-colors duration-300 shadow-2xl group"
+                animate={{
+                  x: btnOffset.x,
+                  y: btnOffset.y,
+                  boxShadow: [
+                    "0 0 20px rgba(0,0,0,0.2), 0 0 40px rgba(0,0,0,0.1)",
+                    "0 0 30px rgba(0,0,0,0.35), 0 0 60px rgba(0,0,0,0.15)",
+                    "0 0 20px rgba(0,0,0,0.2), 0 0 40px rgba(0,0,0,0.1)",
+                  ],
+                }}
+                transition={{
+                  x: { type: "spring", stiffness: 200, damping: 15, mass: 0.5 },
+                  y: { type: "spring", stiffness: 200, damping: 15, mass: 0.5 },
+                  boxShadow: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+                }}
+                className="inline-flex items-center gap-3 px-12 py-6 bg-dark text-white font-display font-bold text-lg rounded-xl group"
               >
                 <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-                Ou fale direto no WhatsApp
-              </a>
+                Falar no WhatsApp
+              </motion.a>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="bg-[rgba(0,0,0,0.15)] backdrop-blur-xl rounded-2xl border border-[rgba(0,0,0,0.1)] p-8 md:p-10"
-            >
-              <h3 className="text-xl sm:text-2xl font-display font-bold text-primary-foreground mb-8">
-                Receba um orçamento em até 48h
-              </h3>
-              <div className="space-y-5">
-                <input
-                  type="text"
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="Seu nome"
-                  className="w-full px-5 py-4 bg-[rgba(0,0,0,0.2)] border border-[rgba(0,0,0,0.15)] rounded-xl text-primary-foreground placeholder:text-primary-foreground/50 font-body text-base focus:outline-none focus:border-primary-foreground/40 transition-colors"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="seu@email.com"
-                  className="w-full px-5 py-4 bg-[rgba(0,0,0,0.2)] border border-[rgba(0,0,0,0.15)] rounded-xl text-primary-foreground placeholder:text-primary-foreground/50 font-body text-base focus:outline-none focus:border-primary-foreground/40 transition-colors"
-                />
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="Como podemos ajudar?"
-                  rows={4}
-                  className="w-full px-5 py-4 bg-[rgba(0,0,0,0.2)] border border-[rgba(0,0,0,0.15)] rounded-xl text-primary-foreground placeholder:text-primary-foreground/50 font-body text-base focus:outline-none focus:border-primary-foreground/40 transition-colors resize-none"
-                />
-                <button className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-dark text-white font-display font-bold text-base rounded-xl hover:bg-dark-card hover:shadow-[0_0_20px_rgba(0,0,0,0.3)] transition-all duration-300 group">
-                  <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  Enviar Solicitação
-                </button>
-              </div>
-            </motion.div>
           </div>
         </motion.div>
       </section>

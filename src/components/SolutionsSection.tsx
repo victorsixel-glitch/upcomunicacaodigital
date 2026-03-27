@@ -1,6 +1,6 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { ChevronRight, Briefcase, Palette, Camera, ClipboardCheck, Rocket, Globe } from "lucide-react";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { ChevronRight, Briefcase, Palette, Camera, ClipboardCheck, Rocket, Globe, MessageCircle } from "lucide-react";
 
 const services = [
   { icon: Briefcase, title: "Consultoria em Marketing & Gestão de redes", category: "Estratégia & Gestão", desc: "A estratégia é o ponto de partida para qualquer resultado sólido. Oferecemos consultoria personalizada em marketing e gestão de redes sociais para potencializar sua presença digital." },
@@ -65,6 +65,72 @@ const ServiceItem = ({ service, i, isOpen, toggle }: { service: typeof services[
   );
 };
 
+const WA_URL = "https://wa.me/5563984257831?text=Olá! Vim pelo site e gostaria de solicitar um orçamento.";
+
+const SolutionsCTAButton = ({ inView }: { inView: boolean }) => {
+  const btnRef = useRef<HTMLAnchorElement>(null);
+  const [btnOffset, setBtnOffset] = useState({ x: 0, y: 0 });
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const btn = btnRef.current;
+    if (!btn) return;
+    const rect = btn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const maxDist = 180;
+    if (dist < maxDist) {
+      const strength = 1 - dist / maxDist;
+      setBtnOffset({ x: dx * strength * 0.45, y: dy * strength * 0.45 });
+    } else {
+      setBtnOffset({ x: 0, y: 0 });
+    }
+  }, []);
+  const handleMouseLeave = useCallback(() => setBtnOffset({ x: 0, y: 0 }), []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: 0.6 }}
+      className="text-center mt-12"
+    >
+      <div
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{ padding: "40px", margin: "-40px" }}
+        className="inline-block"
+      >
+        <motion.a
+          ref={btnRef}
+          href={WA_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          animate={{
+            x: btnOffset.x,
+            y: btnOffset.y,
+            boxShadow: [
+              "0 0 20px rgba(255,215,0,0.3), 0 0 40px rgba(255,215,0,0.15)",
+              "0 0 30px rgba(255,215,0,0.5), 0 0 60px rgba(255,215,0,0.25)",
+              "0 0 20px rgba(255,215,0,0.3), 0 0 40px rgba(255,215,0,0.15)",
+            ],
+          }}
+          transition={{
+            x: { type: "spring", stiffness: 200, damping: 15, mass: 0.5 },
+            y: { type: "spring", stiffness: 200, damping: 15, mass: 0.5 },
+            boxShadow: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+          }}
+          className="inline-flex items-center gap-3 px-10 py-5 bg-gold text-primary-foreground font-display font-bold text-lg rounded-xl group"
+        >
+          <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+          Solicitar Orçamento
+        </motion.a>
+      </div>
+    </motion.div>
+  );
+};
+
 const SolutionsSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
@@ -117,19 +183,7 @@ const SolutionsSection = () => {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="text-center mt-12"
-        >
-          <a
-            href="#orcamento"
-            className="inline-flex items-center gap-3 px-10 py-5 bg-gold text-primary-foreground font-display font-bold text-lg rounded-xl hover:shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all duration-300"
-          >
-            Solicitar Orçamento
-          </a>
-        </motion.div>
+        <SolutionsCTAButton inView={inView} />
       </div>
     </section>
   );

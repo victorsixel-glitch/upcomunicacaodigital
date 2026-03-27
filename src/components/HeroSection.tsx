@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useRef, useCallback, useState } from "react";
+import { MessageCircle } from "lucide-react";
 import heroCamera from "@/assets/hero-camera.jpg";
 import heroLaptop from "@/assets/hero-laptop.png";
 import heroPalmas from "@/assets/hero-palmas.png";
@@ -68,7 +69,9 @@ const HeroSection = () => {
           >
             <motion.a
               ref={btnRef}
-              href="#orcamento"
+              href="https://wa.me/5563984257831?text=Olá! Vim pelo site e gostaria de solicitar um orçamento."
+              target="_blank"
+              rel="noopener noreferrer"
               animate={{
                 x: btnOffset.x,
                 y: btnOffset.y,
@@ -83,8 +86,9 @@ const HeroSection = () => {
                 y: { type: "spring", stiffness: 200, damping: 15, mass: 0.5 },
                 boxShadow: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
               }}
-              className="inline-flex items-center px-10 py-5 bg-gold text-primary-foreground font-display font-bold text-lg rounded-xl"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-gold text-primary-foreground font-display font-bold text-lg rounded-xl"
             >
+              <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform" />
               Solicitar Orçamento
             </motion.a>
             <a
