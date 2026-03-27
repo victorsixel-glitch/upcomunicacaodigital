@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { ArrowRight } from "lucide-react";
+import { useRef, useCallback, useState } from "react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 
 const CtaBannerSection = () => {
   const ref = useRef(null);
