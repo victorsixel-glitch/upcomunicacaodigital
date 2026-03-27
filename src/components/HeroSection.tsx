@@ -47,7 +47,7 @@ const HeroSection = () => {
             transition={{ delay: 0.2 }}
             className="section-subtitle mb-5 text-base"
           >
-            BRANDING · FILMMAKER · PERFORMANCE
+            BRANDING · POSICIONAMENTO · PERFORMANCE
           </motion.p>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display font-extrabold leading-[1.05] tracking-[-0.02em] mb-8">
