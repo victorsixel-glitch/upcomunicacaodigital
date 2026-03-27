@@ -42,20 +42,7 @@ const CtaBannerSection = () => {
               </motion.p>
             </div>
 
-            <motion.a
-              href="https://wa.me/5563984257831?text=Olá! Vim pelo site e gostaria de solicitar um orçamento."
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              whileHover={{ scale: 1.05, boxShadow: "0 10px 40px rgba(0,0,0,0.3)" }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-3 px-10 py-5 bg-primary-foreground text-gold font-display font-bold text-lg rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.2)] shrink-0"
-            >
-              Falar com a UP
-              <ArrowRight className="w-5 h-5" />
-            </motion.a>
+            <CtaMagneticButton inView={inView} />
           </div>
         </motion.div>
       </div>

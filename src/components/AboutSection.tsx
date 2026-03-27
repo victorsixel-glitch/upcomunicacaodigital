@@ -92,7 +92,9 @@ const AboutSection = () => {
             >
               <motion.a
                 ref={btnRef}
-                href="#orcamento"
+                href="https://wa.me/5563984257831?text=Olá! Vim pelo site e gostaria de solicitar um orçamento."
+                target="_blank"
+                rel="noopener noreferrer"
                 animate={{
                   x: btnOffset.x,
                   y: btnOffset.y,

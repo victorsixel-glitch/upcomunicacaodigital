@@ -78,7 +78,9 @@ const Header = () => {
             {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
           <a
-            href="#orcamento"
+            href="https://wa.me/5563984257831?text=Olá! Vim pelo site e gostaria de solicitar um orçamento."
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-2.5 bg-gold text-primary-foreground font-display font-semibold text-sm rounded-lg btn-magnetic hover:shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all duration-300"
           >
             Orçamento
@@ -125,7 +127,9 @@ const Header = () => {
             </a>
           ))}
           <a
-            href="#orcamento"
+            href="https://wa.me/5563984257831?text=Olá! Vim pelo site e gostaria de solicitar um orçamento."
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMobileOpen(false)}
             className="block mt-4 text-center px-6 py-2.5 bg-gold text-primary-foreground font-display font-semibold rounded-lg"
           >
