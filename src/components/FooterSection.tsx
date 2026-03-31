@@ -108,9 +108,9 @@ const FooterSection = () => {
                   <img
                     src={victorSixelAvatar}
                     alt="Victor Sixel - Designer Gráfico"
-                    className="h-12 w-12 object-contain invert rounded-full"
+                    className="h-16 w-16 object-contain invert rounded-full"
                   />
-                  <span className="text-sm text-zinc-400 font-display font-semibold">Victor Sixel</span>
+                  <span className="text-base text-zinc-400 font-display font-semibold">Victor Sixel</span>
                 </a>
               </div>
             </div>
