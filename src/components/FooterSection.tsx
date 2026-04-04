@@ -100,7 +100,7 @@ const FooterSection = () => {
               <div className="pt-4 border-t border-[rgba(255,255,255,0.06)]">
                 <p className="text-xs text-zinc-500 font-body mb-3">Pensado e desenvolvido por</p>
                 <a
-                  href="https://sixel.myportfolio.com/"
+                  href="https://vsixel.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 hover:opacity-100 opacity-70 transition-opacity duration-300"
