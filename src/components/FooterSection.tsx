@@ -111,6 +111,7 @@ const FooterSection = () => {
                     className="h-16 w-16 object-contain invert rounded-full"
                   />
                   <span className="text-base text-zinc-400 font-display font-semibold">Victor Sixel</span>
+                  <MousePointerClick className="w-4 h-4 text-zinc-500 animate-pulse" />
                 </a>
               </div>
             </div>
