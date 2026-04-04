@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useCallback, useState } from "react";
-import { MessageCircle, Instagram, Mail, Phone } from "lucide-react";
+import { MessageCircle, Instagram, Mail, Phone, MousePointerClick } from "lucide-react";
 import logoUp from "@/assets/logo-up.png";
 import victorSixelAvatar from "@/assets/victor-sixel-avatar.png";
 
