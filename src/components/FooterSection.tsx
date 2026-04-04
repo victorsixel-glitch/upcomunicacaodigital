@@ -108,7 +108,7 @@ const FooterSection = () => {
                   <img
                     src={victorSixelAvatar}
                     alt="Victor Sixel - Designer Gráfico"
-                    className="h-16 w-16 object-contain invert rounded-full"
+                    className="h-20 w-20 object-contain invert"
                   />
                   <span className="text-base text-zinc-400 font-display font-semibold">Victor Sixel</span>
                   <MousePointerClick className="w-4 h-4 text-zinc-500 animate-pulse" />
